@@ -1,0 +1,22 @@
+#include <Servo.h>
+int POS = 0;
+int DEG = 0;
+Servo servo_3;
+
+void setup()
+{
+  pinMode(A0, INPUT);
+  servo_3.attach(3);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  POS = analogRead(A0);
+  POS = map(POS, 0, 1023, 0, 180);
+  servo_3.write(POS);
+  DEG = servo_3.read();
+  Serial.print("DEG :");
+  Serial.println(DEG);
+  delay(15); // Wait for 15 millisecond(s)
+}
